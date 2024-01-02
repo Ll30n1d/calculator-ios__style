@@ -5,7 +5,7 @@ let sign = '';
 let finish = false;
 
 const digit = ['0','1','2','3','4','5','6','7','8','9','.'];
-const action = ['-','+','*','/','%'];
+const action = ['-','+','×','÷','%', '+/-'];
 
 const out = document.querySelector('.calc-screen p')
 
@@ -15,11 +15,12 @@ function clearAll() {
     sign = '';
     finish = false;
     out.textContent = 0;
-
+    clr.innerHTML = 'AC';
 }
 
 document.querySelector('.ac').onclick = clearAll;
-// document.querySelector('.equal').onclick = clearAll;
+let clr = document.querySelector('.ac');
+
 
 
 document.querySelector('.buttons').onclick = (event) => {
@@ -29,7 +30,7 @@ document.querySelector('.buttons').onclick = (event) => {
     if(event.target.classList.contains('ac')) return;
 
     out.textContent= '';
-    //получаю нажатую кнопку
+    //получает нажатую кнопку
     const key = event.target.textContent;
     //нажата ли цифра 0-9
     if(digit.includes(key)) {
@@ -37,11 +38,13 @@ document.querySelector('.buttons').onclick = (event) => {
         //если y пустой то наполнятся x
         x += key;
         console.log(x, y, sign);
+        //изменение AC на С при нажатии на цифру
+        clr.innerHTML = 'C';
         //вывод строки в цифрах на экран
         out.textContent = x
         }
 
-        //если значение x & y не пустое (отриц значение это когда после переменной восклицательный знак {a!}) 
+        //если значение x & y не пустое  
         else if (x!=='' && y!=='' && finish) {
             //обнуляем y и finish
             y = key;
@@ -56,18 +59,20 @@ document.querySelector('.buttons').onclick = (event) => {
             out.textContent = y
         }
 
-        console.log(x, sign, y );
+        if(sign!=='', y!==''){console.log(x, sign, y );}
         return;
     }
 
     //если нажата клавиша знака
     if(action.includes(key)) {
         sign = key;
-        console.log(x, y, sign);
+        console.log(sign);
         out.textContent = sign;
 
         return;
     }
+
+    
 
     //если нажата равно =
     //if который передает переменную y переменной x при том что x и sign были нажаты (x!=='' && sign!=='')
@@ -82,17 +87,17 @@ document.querySelector('.buttons').onclick = (event) => {
                     x = x - y;
                     break;
 
-                case '*':
+                case '×':
                     x = x * y;
                     break;
 
                 
                 //функция с процентами которая реализованая умножением x на 0.1
                 case '%':
-                    x = x * 0.1;
+                    x = x / 100;
                     break;
 
-                case '/':
+                case '÷':
                     //ошибка при делении на нуль
                     if (y === '0') {
                         out.textContent ='Error';
@@ -102,7 +107,10 @@ document.querySelector('.buttons').onclick = (event) => {
                         return;
                     }
                     x = x / y;
-                    break
+                    break;
+
+                    case '+/-':
+                        if(y==='', x!==''){x = -x}
             }
             finish = true
             out.textContent = x;
@@ -110,6 +118,7 @@ document.querySelector('.buttons').onclick = (event) => {
     }
 
 
+   
 }
 
 
