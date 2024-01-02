@@ -39,9 +39,9 @@ body {
     margin: 0;
 }
 
-/* .buttons {
-    
-} */
+.txt-p::selection {
+    background-color: #333;
+}
 
 .calc__row-1 {
     display: flex;
@@ -109,6 +109,17 @@ body {
 
 .btn.bg-orange {
     background: #ffae00;
+}
+
+.equal {
+    background: #ffae00;
+    color: #fff;
+}
+
+.btn.bg-orange:active {
+    background: #fff;
+    color: #ffae00;
+    transition: 0.2s;
 }
 
 .bottombar {
