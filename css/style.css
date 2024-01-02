@@ -103,19 +103,19 @@ body {
 }
 
 .btn.bg-grey {
-    background: #a6a6a6;
+    background: #D4D4D2;
+    color: #000;
 }
 
 .btn.bg-orange {
-    background: #ff9501;
+    background: #ffae00;
 }
 
 .bottombar {
     background: #fff;
-    width: 44%;
+    width: 38%;
     height: 3.5px;
     border-radius: 10px;
     margin: 0 auto;
     margin-top: 47px;
 }
-
